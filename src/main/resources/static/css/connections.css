@@ -1,0 +1,574 @@
+/* Connection Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.close-modal:hover {
+  color: var(--foreground);
+}
+
+.close-modal svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.form-help {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  margin-right: 0.5rem;
+}
+
+.btn-cancel:hover {
+  background-color: var(--background);
+}
+
+.btn-connect {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn-connect:hover {
+  background-color: hsl(240, 60%, 52%);
+}
+
+/* Account Item Updates */
+.account-item {
+  position: relative;
+}
+
+.remove-connection {
+  position: absolute;
+  right: 0.5rem;
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.remove-connection svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.account-item:hover .remove-connection {
+  display: block;
+}
+
+.remove-connection:hover {
+  color: #ef4444;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transform: translateY(1rem);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Additional platform styles */
+.account-icon.linkedin {
+  background-color: #0077b5;
+}
+
+.account-icon.youtube {
+  background-color: #ff0000;
+}
+
+.account-icon.pinterest {
+  background-color: #e60023;
+}
+
+.account-icon.tiktok {
+  background-color: #000000;
+}
+
+/* New Connections Page Styles */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Tabs Styling */
+.social-tabs {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tabs-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-item {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-item:hover {
+  color: var(--foreground);
+}
+
+.tab-item.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-content {
+  padding: 1.5rem;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Connections Grid */
+.connections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.connection-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.connection-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.connection-header {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.platform-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.platform-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.platform-icon.large {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.platform-icon.large svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.platform-icon.twitter {
+  background-color: #1da1f2;
+}
+
+.platform-icon.facebook {
+  background-color: #1877f2;
+}
+
+.platform-icon.instagram {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}
+
+.platform-icon.linkedin {
+  background-color: #0077b5;
+}
+
+.platform-icon.youtube {
+  background-color: #ff0000;
+}
+
+.connection-details {
+  flex: 1;
+}
+
+.connection-details h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.connection-details p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.connection-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 0.25rem;
+}
+
+.connection-menu svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.connection-menu:hover {
+  color: var(--foreground);
+}
+
+.connection-stats {
+  display: flex;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.connection-actions {
+  padding: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.btn-edit:hover {
+  background-color: var(--background);
+}
+
+.btn-remove {
+  background-color: transparent;
+  border: 1px solid #fee2e2;
+  color: #ef4444;
+}
+
+.btn-remove:hover {
+  background-color: #fef2f2;
+}
+
+/* Add Connection Card */
+.add-connection {
+  border: 2px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background-color: var(--background);
+}
+
+.add-connection-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.add-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.add-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.add-connection h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.add-connection p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.add-connection-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-connection-btn:hover {
+  background-color: hsl(240, 60%, 52%);
+}
+
+/* Platform Header */
+.platform-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.platform-info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.platform-info h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.platform-info p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.platform-add-btn {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.platform-add-btn svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.platform-add-btn:hover {
+  background-color: hsl(240, 60%, 52%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .connections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs-list {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .tab-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .platform-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .platform-info {
+    margin: 1rem 0;
+  }
+
+  .platform-add-btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+}

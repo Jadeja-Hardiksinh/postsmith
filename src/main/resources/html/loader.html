@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loader</title>
+    <style>
+      /* Reset and base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        background-color: rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Loader container */
+      .loader-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* Spinner animation */
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid rgba(0, 0, 0, 0.1);
+        border-top-color: #5f6ac4;
+        animation: spin 1s infinite linear;
+      }
+
+      /* Optional message below spinner */
+      .loader-text {
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        color: #555;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.5s forwards;
+      }
+
+      /* Animations */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Optional size variations */
+      .spinner.small {
+        width: 24px;
+        height: 24px;
+        border-width: 2px;
+      }
+
+      .spinner.large {
+        width: 64px;
+        height: 64px;
+        border-width: 4px;
+      }
+
+      /* Optional color variations */
+      .spinner.primary {
+        border-top-color: #5f6ac4;
+      }
+
+      .spinner.success {
+        border-top-color: #10b981;
+      }
+
+      .spinner.warning {
+        border-top-color: #f59e0b;
+      }
+
+      .spinner.error {
+        border-top-color: #ef4444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-container">
+      <!-- Default spinner -->
+      <div class="spinner"></div>
+
+      <!-- Optional loading text -->
+      <p class="loader-text">Loading...</p>
+    </div>
+
+    <script>
+      // Simple API to control the loader
+      const Loader = {
+        // Show loader with optional message
+        show: function (message = null) {
+          document.querySelector(".loader-container").style.display = "flex";
+
+          // Update message if provided
+          if (message) {
+            const textEl = document.querySelector(".loader-text");
+            textEl.textContent = message;
+            textEl.style.display = "block";
+          } else {
+            document.querySelector(".loader-text").style.display = "none";
+          }
+        },
+
+        // Hide loader
+        hide: function () {
+          document.querySelector(".loader-container").style.display = "none";
+        },
+
+        // Change spinner size (small, default, large)
+        setSize: function (size) {
+          const spinner = document.querySelector(".spinner");
+          spinner.classList.remove("small", "large");
+          if (size === "small" || size === "large") {
+            spinner.classList.add(size);
+          }
+        },
+
+        // Change spinner color (primary, success, warning, error)
+        setColor: function (color) {
+          const spinner = document.querySelector(".spinner");
+          spinner.classList.remove("primary", "success", "warning", "error");
+          if (["primary", "success", "warning", "error"].includes(color)) {
+            spinner.classList.add(color);
+          }
+        },
+      };
+    </script>
+  </body>
+</html>
