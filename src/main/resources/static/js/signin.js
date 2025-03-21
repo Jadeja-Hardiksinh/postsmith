@@ -21,15 +21,17 @@ form.addEventListener("submit", (e) => {
   };
   fetch("/api/v1/user/login", {
     method: "POST",
-    body: JSON.stringify(reqJson),
-    headers: { "Content-Type": "application/json" },
+    body: formData,
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       console.log(data);
-      if (data.redirectTo) {
-        window.location.href = data.redirectTo;
-      }
       toastDisplay(data.message, data.status);
     });
 });

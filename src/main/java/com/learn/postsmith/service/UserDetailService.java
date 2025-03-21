@@ -3,6 +3,7 @@ package com.learn.postsmith.service;
 import com.learn.postsmith.entity.UserDetail;
 import com.learn.postsmith.repository.UserDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,7 +23,7 @@ public class UserDetailService implements UserDetailsService {
     }
 
     public boolean userExist(UserDetail user) {
-        if (userDetailRepository.findByEmail(user.getEmail()).isPresent()) {
+        if (userDetailRepository.findByEmail(user.getEmail()) != null) {
             return true;
         } else {
             return false;
@@ -32,6 +33,10 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userDetailRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        UserDetail user = userDetailRepository.findByEmail(email);
+        if (user != null) {
+            return User.builder().username(user.getEmail()).password(user.getPassword()).roles(user.getUserRole().name()).build();
+        }
+        throw new UsernameNotFoundException("User not found");
     }
 }
