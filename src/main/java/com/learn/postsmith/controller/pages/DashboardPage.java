@@ -12,11 +12,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/dashbaord")
+@RequestMapping("/dashboard")
 public class DashboardPage {
     @GetMapping
     public ResponseEntity<String> renderDashboardPage() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/learn/postsmith/controller/pages/DashboardPage.java"));
+        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/html/dashboard.html"));
         StringBuilder htmlContent = new StringBuilder();
         String line;
         while ((line = br.readLine()) != null) {
