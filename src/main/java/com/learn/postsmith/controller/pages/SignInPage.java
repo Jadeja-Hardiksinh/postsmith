@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/login")
 public class SignInPage {
     @GetMapping()
-    public ResponseEntity<String> getSignInPage() {
+    public ResponseEntity<String> renderSignInPage() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/main/resources/html/signin.html"));
             StringBuilder htmlContent = new StringBuilder();

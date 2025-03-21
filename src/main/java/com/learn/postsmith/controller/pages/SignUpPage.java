@@ -15,18 +15,17 @@ import java.io.IOException;
 @RequestMapping("/")
 public class SignUpPage {
     @GetMapping
-    public ResponseEntity<String> getSignUpPage(){
+    public ResponseEntity<String> renderSignUpPage() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/main/resources/html/signup.html"));
             StringBuilder htmlContent = new StringBuilder();
             String line;
-            while ((line=br.readLine())!=null)
-            {
+            while ((line = br.readLine()) != null) {
                 htmlContent.append(line);
             }
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type","text/html");
-            return new ResponseEntity<String>(htmlContent.toString(),headers,HttpStatus.OK);
+            headers.add("Content-Type", "text/html");
+            return new ResponseEntity<String>(htmlContent.toString(), headers, HttpStatus.OK);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
