@@ -1,6 +1,8 @@
 package com.learn.postsmith.config;
 
+import com.learn.postsmith.dto.GeneralResponseDTO;
 import com.learn.postsmith.service.UserDetailService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,8 +26,17 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain setBasic(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests((authorize) -> authorize.requestMatchers("/", "/login", "/dashboard", "/api/v1/user/create", "/api/v1/user/login", "/css/**", "/js/**", "/images/**", "/assets/**", "/favicon.ico").permitAll().anyRequest().authenticated());
-
+        httpSecurity.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests((authorize) -> authorize.requestMatchers("/", "/login", "/api/v1/user/create", "/api/v1/user/login", "/css/**", "/js/**", "/images/**", "/assets/**", "/favicon.ico")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()).formLogin(formlogin -> formlogin.loginPage("/login").loginProcessingUrl("/api/v1/user/login")
+                        .usernameParameter("email").defaultSuccessUrl("/dashboard")
+                        .failureHandler((request, response, exception) -> {
+                            response.setHeader("Content-Type", "application/json");
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write(new GeneralResponseDTO("error", "invalid credentials", null, null).generateJson().toString());
+                        }));
         return httpSecurity.build();
     }
 
