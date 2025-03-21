@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -16,18 +15,17 @@ import java.io.IOException;
 @RequestMapping("/login")
 public class SignInPage {
     @GetMapping()
-    public ResponseEntity<String> getSignInPage()
-    {
+    public ResponseEntity<String> getSignInPage() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/html/signup.html"));
+            BufferedReader br = new BufferedReader(new FileReader("src/main/resources/html/signin.html"));
             StringBuilder htmlContent = new StringBuilder();
             String line;
-            while((line=br.readLine())!=null){
+            while ((line = br.readLine()) != null) {
                 htmlContent.append(line);
             }
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type","text/html");
-            return  new ResponseEntity<String>(htmlContent.toString(),headers, HttpStatus.OK
+            headers.add("Content-Type", "text/html");
+            return new ResponseEntity<String>(htmlContent.toString(), headers, HttpStatus.OK
             );
         } catch (IOException e) {
 

@@ -1,7 +1,7 @@
 import { checkSession } from "./checkSession.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  init();
+  // init();
   // Set current year in footer
   const yearElements = document.querySelectorAll("#year, #yearMobile");
   const currentYear = new Date().getFullYear();
@@ -19,7 +19,7 @@ form.addEventListener("submit", (e) => {
     email: formData.get("email"),
     password: formData.get("password"),
   };
-  fetch("/api/v1/login", {
+  fetch("/api/v1/user/login", {
     method: "POST",
     body: JSON.stringify(reqJson),
     headers: { "Content-Type": "application/json" },
@@ -30,7 +30,7 @@ form.addEventListener("submit", (e) => {
       if (data.redirectTo) {
         window.location.href = data.redirectTo;
       }
-      toastDisplay(data.message, "success");
+      toastDisplay(data.message, data.status);
     });
 });
 
@@ -49,10 +49,10 @@ function toastDisplay(msg, type) {
   }, 4000);
 }
 
-async function init() {
-  const sessionData = checkSession();
-  if (sessionData.status === "success") {
-    //window.location.href = "./dashboard";
-    console.log("sucess");
-  }
-}
+// async function init() {
+//   const sessionData = checkSession();
+//   if (sessionData.status === "success") {
+//     //window.location.href = "./dashboard";
+//     console.log("sucess");
+//   }
+// }

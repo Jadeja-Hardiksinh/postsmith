@@ -1,6 +1,6 @@
 import { checkSession } from "./checkSession.js";
 document.addEventListener("DOMContentLoaded", function () {
-  init();
+  //init();
   // Set current year in footer
   const yearElements = document.querySelectorAll("#year, #yearMobile");
   const currentYear = new Date().getFullYear();
@@ -13,12 +13,12 @@ signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let formData = new FormData(signUpForm);
   let jsonFormData = {
-    userName: formData.get("fname"),
-    password: formData.get("password"),
+    fname: formData.get("fname"),
     email: formData.get("email"),
+    password: formData.get("password"),
   };
   console.log(jsonFormData);
-  fetch("/api/v1/users", {
+  fetch("/api/v1/user/create", {
     method: "POST",
     body: JSON.stringify(jsonFormData),
     headers: { "Content-Type": "application/json" },
