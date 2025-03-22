@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .failureHandler((request, response, exception) -> {
                             response.setHeader("Content-Type", "application/json");
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                            response.getWriter().write(new GeneralResponseDTO("error", "invalid credentials", null, null).generateJson().toString());
+                            response.getWriter().write(new GeneralResponseDTO("error", exception.getMessage(), null, null).generateJson().toString());
                         }));
         return httpSecurity.build();
     }
