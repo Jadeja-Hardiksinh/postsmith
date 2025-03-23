@@ -1,8 +1,6 @@
 import { checkSession } from "./checkSession.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // init();
-  // Set current year in footer
   const yearElements = document.querySelectorAll("#year, #yearMobile");
   const currentYear = new Date().getFullYear();
   yearElements.forEach((el) => {
