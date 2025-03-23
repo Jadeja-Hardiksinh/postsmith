@@ -36,7 +36,9 @@ public class SecurityConfig {
                             response.setHeader("Content-Type", "application/json");
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                             response.getWriter().write(new GeneralResponseDTO("error", exception.getMessage(), null, null).generateJson().toString());
-                        }));
+                        })).logout((logout) -> {
+                    logout.logoutUrl("/api/v1/user/logout").logoutSuccessUrl("/login");
+                });
         return httpSecurity.build();
     }
 

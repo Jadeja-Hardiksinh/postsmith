@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/user")
-public class LoginUser {
+public class LoginAndLogoutUser {
 
 
     @PostMapping("/login")
     public void userLogin(@RequestBody UserDetail user, HttpServletRequest request) {
+
+
+    }
+
+    @PostMapping("/logout")
+    public void userLogout(@RequestBody UserDetail user, HttpServletRequest request) {
 
 
     }
