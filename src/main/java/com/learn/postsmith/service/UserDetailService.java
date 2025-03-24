@@ -17,9 +17,9 @@ public class UserDetailService implements UserDetailsService {
     @Autowired
     UserDetailRepository userDetailRepository;
 
-    public void createUser(UserDetail user) {
+    public boolean createUser(UserDetail user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDetailRepository.save(user);
+        return userDetailRepository.save(user).getId() != null;
     }
 
     public boolean userExist(UserDetail user) {
