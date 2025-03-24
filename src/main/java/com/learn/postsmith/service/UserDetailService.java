@@ -23,12 +23,11 @@ public class UserDetailService implements UserDetailsService {
     }
 
     public boolean userExist(UserDetail user) {
-        if (userDetailRepository.findByEmail(user.getEmail()) != null) {
-            return true;
-        } else {
-            return false;
+        return userDetailRepository.findByEmail(user.getEmail()) != null;
+    }
 
-        }
+    public UserDetail findByEmail(String email) {
+        return userDetailRepository.findByEmail(email);
     }
 
     @Override
