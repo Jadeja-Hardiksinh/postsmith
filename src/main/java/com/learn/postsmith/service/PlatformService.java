@@ -1,6 +1,7 @@
 package com.learn.postsmith.service;
 
 import com.learn.postsmith.entity.Platform;
+import com.learn.postsmith.enums.PlatformName;
 import com.learn.postsmith.repository.PlatformRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class PlatformService {
 
     }
 
-   
+    public Platform findPlatformByUserIdAndPlatformName(Long userId, PlatformName name) {
+        return repository.findByUserIdAndPlatform(userId, name);
+
+    }
+
+
 }

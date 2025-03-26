@@ -20,11 +20,15 @@ public class GeneralResponseDTO {
     @JsonProperty(value = "details")
     Object object;
 
+    public GeneralResponseDTO(String status, String message, String redirectTo) {
+        this.status = status;
+        this.message = message;
+        this.redirectTo = redirectTo;
+    }
+
     public String generateJson() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(this);
 
     }
-
-
 }

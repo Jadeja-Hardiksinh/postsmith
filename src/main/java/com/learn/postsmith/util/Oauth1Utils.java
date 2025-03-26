@@ -24,7 +24,7 @@ public class Oauth1Utils {
 
         headerStr.delete(headerStr.length() - 2, headerStr.length());
 
-        generateBaseString("post", "https://api.twitter.com/oauth/request_token", header);
+
         return headerStr.toString();
     }
 
@@ -43,18 +43,18 @@ public class Oauth1Utils {
         return baseStr.toString();
     }
 
-    public static String generateSigningKey(String csKey, String accessToken) {
+    public static String generateSigningKey(String csKey, String tokenSecret) {
         StringBuilder str = new StringBuilder();
         str.append(urlEncode(csKey)).append("&");
-        if (accessToken != null && !accessToken.isEmpty()) {
-            str.append(urlEncode(accessToken));
+        if (tokenSecret != null && !tokenSecret.isEmpty()) {
+            str.append(urlEncode(tokenSecret));
         }
         return str.toString();
     }
 
-    public static String generateSignature(String apiMethod, String apiURL, String csKey, String accessToken, TreeMap<String, String> headers) throws NoSuchAlgorithmException, InvalidKeyException {
+    public static String generateSignature(String apiMethod, String apiURL, String csKey, String tokenSecret, TreeMap<String, String> headers) throws NoSuchAlgorithmException, InvalidKeyException {
         String baseString = generateBaseString(apiMethod, apiURL, headers);
-        String signingKey = generateSigningKey(csKey, accessToken);
+        String signingKey = generateSigningKey(csKey, tokenSecret);
         Mac mac = Mac.getInstance("HmacSHA1");
         SecretKeySpec secretKeySpec = new SecretKeySpec(signingKey.getBytes(StandardCharsets.UTF_8), "HmacSHA1");
         mac.init(secretKeySpec);

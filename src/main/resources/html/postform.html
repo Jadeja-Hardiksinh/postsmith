@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule a Post</title>
+    <link rel="stylesheet" href="/css/postform.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Postsmith</h2>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li class="active"><a href="#">Schedule Post</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Accounts</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header">
+        <h2>📅 Schedule a Post</h2>
+        <p>
+          Plan your posts ahead of time and let us handle the scheduling for
+          you.
+        </p>
+      </div>
+
+      <!-- Schedule Form -->
+      <div class="schedule-form">
+        <h3>📢 Create a Scheduled Post</h3>
+        <form id="postform">
+          <label for="platform">Select Platform:</label>
+          <select id="platform" name="platform">
+            <option value="X">🐦 Twitter</option>
+            <option value="youtube">📘 Youtube</option>
+            <option value="instagram">📸 Instagram</option>
+          </select>
+
+          <label for="content">Post Content:</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="Write your post here..."
+            required
+          ></textarea>
+
+          <label for="media">Upload Media:</label>
+          <input type="file" id="media" name="media" />
+
+          <label for="schedule">Schedule Date & Time:</label>
+          <input type="datetime-local" id="schedule" name="schedule" required />
+
+          <button type="submit">🚀 Schedule Post</button>
+        </form>
+      </div>
+    </div>
+    <script src="/js/postform.js"></script>
+  </body>
+</html>

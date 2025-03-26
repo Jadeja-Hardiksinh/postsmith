@@ -2,6 +2,7 @@ package com.learn.postsmith.config;
 
 import com.learn.postsmith.dto.GeneralResponseDTO;
 import com.learn.postsmith.service.UserDetailService;
+import com.learn.postsmith.service.customSecurity.CustomAuthenticationSuccessHandler;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +33,7 @@ public class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated()).formLogin(formlogin -> formlogin.loginPage("/login").loginProcessingUrl("/api/v1/user/login")
-                        .usernameParameter("email").defaultSuccessUrl("/dashboard")
+                        .usernameParameter("email").successHandler(getCustomAuthenticationSuccessHandler())
                         .failureHandler((request, response, exception) -> {
                             response.setHeader("Content-Type", "application/json");
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -40,6 +42,11 @@ public class SecurityConfig {
                     logout.logoutUrl("/api/v1/user/logout").logoutSuccessUrl("/login");
                 });
         return httpSecurity.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler getCustomAuthenticationSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
     }
 
     @Bean

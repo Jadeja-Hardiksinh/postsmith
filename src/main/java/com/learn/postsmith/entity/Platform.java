@@ -17,7 +17,8 @@ public class Platform {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Long user_id;
+    @Column(name = "user_id")
+    Long userId;
     @Column(name = "request_token")
     String requestToken;
     @Column(name = "access_token")
@@ -29,4 +30,8 @@ public class Platform {
     @Enumerated(value = EnumType.STRING)
     PlatformName platform;
 
+    public Platform(Long userId, PlatformName platform) {
+        this.userId = userId;
+        this.platform = platform;
+    }
 }
