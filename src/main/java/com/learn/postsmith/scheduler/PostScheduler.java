@@ -4,20 +4,18 @@ import com.learn.postsmith.entity.Post;
 import com.learn.postsmith.enums.PostStatus;
 import com.learn.postsmith.service.HandlePostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class PostScheduler {
     @Autowired
     HandlePostService postService;
 
-    @Scheduled(fixedRate = 2, timeUnit = TimeUnit.SECONDS)
+    // @Scheduled(fixedRate = 2, timeUnit = TimeUnit.SECONDS)
     public void printTime() {
         List<Post> pendingPosts = postService.findPostsByStatus(PostStatus.PENDING);
         pendingPosts.forEach(post -> {

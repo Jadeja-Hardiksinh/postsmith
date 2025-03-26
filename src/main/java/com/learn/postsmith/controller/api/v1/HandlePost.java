@@ -1,6 +1,5 @@
 package com.learn.postsmith.controller.api.v1;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.learn.postsmith.dto.PostDTO;
 import com.learn.postsmith.entity.Platform;
 import com.learn.postsmith.entity.Post;
@@ -10,11 +9,12 @@ import com.learn.postsmith.service.UserDetailService;
 import com.learn.postsmith.service.XService.XCreateTweetService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -30,12 +30,13 @@ public class HandlePost {
     @Autowired
     PlatformService platformService;
 
-    @PostMapping("/create")
-    public String createPost(@RequestBody PostDTO postDTO, HttpSession session) throws NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
+    @PostMapping(value = "/create")
+    public String createPost(@ModelAttribute PostDTO postDTO, HttpSession session) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         Long userId = Long.parseLong(session.getAttribute("userId").toString());
         postDTO.setUserId(userId);
+        handlePostService.addFile(postDTO.getMedia());
         Platform platform = platformService.findPlatformByUserIdAndPlatformName(postDTO.getUserId(), postDTO.getPlatform());
-        Post post = new Post(postDTO.getContent(), postDTO.getMediaURL(), postDTO.getScheduledAt(), postDTO.getStatus(), platform);
+        Post post = new Post(postDTO.getContent(), postDTO.getMedia().getOriginalFilename(), postDTO.getMedia().getName(), postDTO.getSchedule(), postDTO.getStatus(), platform);
         if (handlePostService.addPost(post)) {
             if (post.getPlatform().getPlatform().name().equals("X")) {
 //                boolean result = tweetService.createTextTweet(post);
