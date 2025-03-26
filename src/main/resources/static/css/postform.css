@@ -1,0 +1,120 @@
+/* General Styling */
+body {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  margin: 0;
+  background-color: #f4f7fc;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 12px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #555;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #007bff;
+}
+
+.sidebar ul li.active a {
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+.header h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Schedule Form */
+.schedule-form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.schedule-form h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.schedule-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.schedule-form input,
+.schedule-form textarea,
+.schedule-form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.schedule-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.schedule-form button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.schedule-form button:hover {
+  background: linear-gradient(to right, #0056b3, #003d82);
+}

@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
   });
   connectBtn.addEventListener("click", (e) => {
-    fetch("/api/v1/user/x/token").then((data) => console.log(data));
+    fetch("/api/v1/user/x/token")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.redirectTo) {
+          window.location.href = data.redirectTo;
+        }
+      });
   });
 });
